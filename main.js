@@ -32,6 +32,9 @@ const team = [
 ];
 
 const container = document.querySelector(".team-container");
+const nameCard = document.getElementById("name");
+const roleCard = document.getElementById("role");
+const imageCard = document.getElementById("image");
 
 for (key in team) {
   container.innerHTML += `
@@ -50,3 +53,33 @@ for (key in team) {
 
 `;
 }
+
+document.getElementById("addMemberButton").addEventListener("click", function () {
+  const nuovoMembro = {
+    name: nameCard.value,
+    role: roleCard.value,
+    image: imageCard.value,
+  };
+
+  team.push(nuovoMembro);
+  
+  container.innerHTML += `
+ <div class="team-card">
+  <div class="card-image">
+    <img
+      src="${nuovoMembro.image}"
+      alt="${nuovoMembro.name}"
+    />
+  </div>
+  <div class="card-text">
+    <h3>${nuovoMembro.name}</h3>
+    <p>${nuovoMembro.role}</p>
+  </div>
+ </div>
+
+`;
+
+  nameCard.value = "";
+  roleCard.value = "";
+  imageCard.value = "";
+});
